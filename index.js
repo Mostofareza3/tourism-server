@@ -3,8 +3,10 @@ const app = express();
 const cors = require("cors");
 const ObjectId = require('mongodb').ObjectId;
 const { MongoClient } = require('mongodb');
-const port = 5000;
-const bodyParser = require("body-parser")
+const port = process.env.PORT || 5000;
+const bodyParser = require("body-parser");
+require('dotenv').config()
+
 
 
 app.use(cors());
@@ -12,7 +14,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 
 
-const uri = "mongodb+srv://TravelX:R3OcrgoqjvRnkY73@cluster0.myaif.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.myaif.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 console.log(uri)
 
