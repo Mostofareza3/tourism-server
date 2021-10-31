@@ -64,6 +64,13 @@ client.connect(err => {
                 email: req.params.email
               });
               res.send(result)
+        });
+
+        //delete package
+        app.delete('/delete/:id',async (req,res)=>{
+            const id = req.params.id;
+            const result =await availablePackages.deleteOne({_id : ObjectId(id)})
+            res.send(result)
         })
 
        
